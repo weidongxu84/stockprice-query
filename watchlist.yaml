@@ -1,0 +1,10 @@
+exchange: SHA
+watch:
+  - symbol: '000001'
+  - symbol: 600018
+  - symbol: 600009
+  - symbol: 600029
+  - symbol: 600030
+  - symbol: 600028
+  - symbol: 600795
+  - symbol: 601988
