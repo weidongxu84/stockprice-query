@@ -14,7 +14,7 @@ def main():
 
     loop = asyncio.get_event_loop()
     tasks = [
-        asyncio.ensure_future(rt_monitor.run(loop, 'watchlist.yaml', interval=60))
+        asyncio.ensure_future(rt_monitor.run(loop, 'watchlist.yaml', interval=5*60))
     ]
     logger.debug(__('async tasks {}', tasks))
     try:

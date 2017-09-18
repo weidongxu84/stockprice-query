@@ -26,7 +26,7 @@ class StockExchange:
 class SHAStockExchange(StockExchange):
 
     def load(self):
-        with open('SHA.csv', 'r') as f:
+        with open('SHA.csv', 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f, delimiter=',')
             for row in reader:
                 symbol = row['Code']
@@ -37,4 +37,4 @@ class SHAStockExchange(StockExchange):
         if symbol == '000001':
             return '上证综指'
         else:
-            return super(SHAStockExchange, self).stock_name(symbol)
+            return super().stock_name(symbol)

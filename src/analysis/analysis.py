@@ -11,13 +11,17 @@ class Analysis:
     def __init__(self, exchange):
         self.exchange = exchange
 
-    def update(self, history, quote):
+    def analysis(self, history, symbols):
+        pass
+
+    def update(self, history, quotes):
         pass
 
 
 class SimpleTrendAnalysis(Analysis):
 
     def update(self, history, quotes):
+        print('Timestamp {}'.format(datetime.now()))
         close_quote_by_symbol = SimpleTrendAnalysis.close_quotes_last_day(history, quotes)
         quote_by_symbol = {quote.symbol: quote for quote in quotes}
         for close_quote in close_quote_by_symbol.values():
@@ -26,20 +30,20 @@ class SimpleTrendAnalysis(Analysis):
             percentage = price_delta / close_quote_by_symbol[symbol].price
 
             gesture = ''
-            if percentage > 5:
-                gesture = '▲▲▲'
-            elif percentage > 2:
-                gesture = '▲▲'
-            elif percentage > 1:
+            if percentage * 100 > 5:
+                gesture = '▲' * 3
+            elif percentage * 100 > 2:
+                gesture = '▲' * 2
+            elif percentage * 100 > 1:
                 gesture = '▲'
-            elif percentage < -1:
+            elif percentage * 100 < -5:
+                gesture = '▼' * 3
+            elif percentage * 100 < -2:
+                gesture = '▼' * 2
+            elif percentage * 100 < -1:
                 gesture = '▼'
-            elif percentage < -2:
-                gesture = '▼▼'
-            elif percentage < -5:
-                gesture = '▼▼▼'
 
-            print('{:s} {:8s} {:8.2f} {:+7.2f} {:+5.1f}% {:3s}'
+            print('{:s} {:8s} {:8.2f} {:+7.2f} {:+6.2f}% {:3s}'
                   .format(symbol, self.exchange.stock_name(symbol),
                           quote_by_symbol[symbol].price, price_delta,
                           percentage * 100, gesture))
@@ -50,7 +54,7 @@ class SimpleTrendAnalysis(Analysis):
         close_quote_by_symbol = {}
         for quote in quotes:
             symbol = quote.symbol
-            if not history.contains(quote) and not symbol in close_quote_by_symbol:
+            if not history.contains(quote) and symbol not in close_quote_by_symbol:
                 partition = partition_by_day[symbol]
                 today = datetime.today()
                 for num_days in range(1, 30):   # check up to a month
@@ -60,3 +64,13 @@ class SimpleTrendAnalysis(Analysis):
                         close_quote_by_symbol[symbol] = partition[day_str][-1]
                         break
         return close_quote_by_symbol
+
+
+class MovingAverageAnalysis(Analysis):
+
+    def analysis(self, history, symbols):
+        pass
+
+    @staticmethod
+    def close_quotes(history, symbols):
+        pass

@@ -62,14 +62,14 @@ class HistoryDataSource:
 
 
 def load_csv(filename):
-    with open(filename, 'r') as f:
+    with open(filename, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f, delimiter=',')
         quotes = [StockQuote(row) for row in reader]
     return quotes
 
 
 def save_csv(filename, quotes):
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=StockQuote._attr, delimiter=',')
         writer.writeheader()
         for quote in quotes:

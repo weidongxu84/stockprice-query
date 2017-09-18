@@ -1,10 +1,24 @@
 exchange: SHA
 watch:
   - symbol: '000001'
-  - symbol: 600018
-  - symbol: 600009
-  - symbol: 600029
-  - symbol: 600030
-  - symbol: 600028
-  - symbol: 600795
-  - symbol: 601988
+  - symbol: '601186'
+  - symbol: '600887'
+  - symbol: '600010'
+  - symbol: '600104'
+  - symbol: '600018'
+  - symbol: '600009'
+  - symbol: '601989'
+  - symbol: '601390'
+  - symbol: '600050'
+  - symbol: '601111'
+  - symbol: '600029'
+  - symbol: '600030'
+  - symbol: '601788'
+  - symbol: '601318'
+  - symbol: '601985'
+  - symbol: '600795'
+  - symbol: '600028'
+  - symbol: '601857'
+  - symbol: '601398'
+  - symbol: '600036'
+  - symbol: '601988'
