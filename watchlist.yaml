@@ -13,7 +13,6 @@ watch:
   - symbol: '601111'
   - symbol: '600029'
   - symbol: '600030'
-  - symbol: '601788'
   - symbol: '601318'
   - symbol: '601985'
   - symbol: '600795'
@@ -22,3 +21,4 @@ watch:
   - symbol: '601398'
   - symbol: '600036'
   - symbol: '601988'
+  - symbol: '601766'
