@@ -5,7 +5,6 @@ from data_source.history_ds import HistoryDataSource
 from data_source.realtime_ds import RealTimeYahooDataSource
 from analysis.analysis import SimpleTrendAnalysis
 import logging
-from logutils import BraceMessage as __
 
 logger = logging.getLogger(__name__)
 

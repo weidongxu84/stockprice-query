@@ -1,7 +1,6 @@
 from datetime import datetime
 from datetime import timedelta
 import logging
-from logutils import BraceMessage as __
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +20,7 @@ class Analysis:
 class SimpleTrendAnalysis(Analysis):
 
     def update(self, history, quotes):
-        print('Timestamp {}'.format(datetime.now()))
+        logger.info(f'Timestamp {datetime.now()}')
         close_quote_by_symbol = SimpleTrendAnalysis.close_quotes_last_day(history, quotes)
         quote_by_symbol = {quote.symbol: quote for quote in quotes}
         for close_quote in close_quote_by_symbol.values():
@@ -43,7 +42,7 @@ class SimpleTrendAnalysis(Analysis):
             elif percentage * 100 < -1:
                 gesture = '▼'
 
-            print('{:s} {:8s} {:8.2f} {:+7.2f} {:+6.2f}% {:3s}'
+            logger.info('{:s} {:8s} {:8.2f} {:+7.2f} {:+6.2f}% {:3s}'
                   .format(symbol, self.exchange.stock_name(symbol),
                           quote_by_symbol[symbol].price, price_delta,
                           percentage * 100, gesture))

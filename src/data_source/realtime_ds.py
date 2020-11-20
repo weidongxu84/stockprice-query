@@ -1,9 +1,9 @@
 from data.equity import *
 from datetime import datetime
-import requests, json
-import googlefinance
+import requests
+import json
+# import googlefinance
 import logging
-from logutils import BraceMessage as __
 
 logger = logging.getLogger(__name__)
 
@@ -18,19 +18,19 @@ class RealTimeDataSource:
         pass
 
 
-class RealTimeGoogleDataSource(RealTimeDataSource):
-
-    def get_tick(self):
-        symbols = [self.exchange + ':' + str(symbol) for symbol in self.symbols]
-        quotes = googlefinance.getQuotes(symbols)
-        logger.debug(__('quotes from Google: {}', quotes))
-        return [RealTimeGoogleDataSource.convert_from_google_quote(quote) for quote in quotes]
-
-    @staticmethod
-    def convert_from_google_quote(quote):
-        return StockQuote(symbol=quote['StockSymbol'],
-                          price=quote['LastTradePrice'],
-                          ts=quote['LastTradeDateTime'])
+# class RealTimeGoogleDataSource(RealTimeDataSource):
+#
+#     def get_tick(self):
+#         symbols = [self.exchange + ':' + str(symbol) for symbol in self.symbols]
+#         quotes = googlefinance.getQuotes(symbols)
+#         logger.debug(f'quotes from Google: {quotes}')
+#         return [RealTimeGoogleDataSource.convert_from_google_quote(quote) for quote in quotes]
+#
+#     @staticmethod
+#     def convert_from_google_quote(quote):
+#         return StockQuote(symbol=quote['StockSymbol'],
+#                           price=quote['LastTradePrice'],
+#                           ts=quote['LastTradeDateTime'])
 
 
 class RealTimeYahooDataSource(RealTimeDataSource):
@@ -45,7 +45,7 @@ class RealTimeYahooDataSource(RealTimeDataSource):
         symbols_segment = ','.join(symbols)
         r = requests.get('https://query1.finance.yahoo.com/v7/finance/quote?lang=en-US&region=US&corsDomain=finance.yahoo.com&fields=symbol,longName,shortName,priceHint,regularMarketPrice,regularMarketChange,regularMarketChangePercent,currency,regularMarketTime,regularMarketVolume,quantity,averageDailyVolume3Month,regularMarketDayHigh,regularMarketDayLow,regularMarketPrice,regularMarketOpen,fiftyTwoWeekHigh,fiftyTwoWeekLow,regularMarketPrice,regularMarketOpen,sparkline,marketCap&symbols=' + symbols_segment + '&formatted=false')
         content = json.loads(r.text)
-        logger.debug(__('quotes from Yahoo: {}', content))
+        logger.debug(f'quotes from Yahoo: {content}')
         quotes = RealTimeYahooDataSource.convert_from_yahoo_json(content)
         return quotes
 

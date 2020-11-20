@@ -1,6 +1,5 @@
 from datetime import datetime
 import logging
-from logutils import BraceMessage as __
 
 logger = logging.getLogger(__name__)
 

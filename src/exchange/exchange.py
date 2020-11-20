@@ -1,6 +1,5 @@
 import csv
 import logging
-from logutils import BraceMessage as __
 from data.equity import Stock
 
 
