@@ -43,7 +43,7 @@ class RealTimeYahooDataSource(RealTimeDataSource):
     def get_tick(self):
         symbols = [str(symbol) + '.' + self.exchange for symbol in self.symbols]
         symbols_segment = ','.join(symbols)
-        r = requests.get('https://query1.finance.yahoo.com/v7/finance/quote?lang=en-US&region=US&corsDomain=finance.yahoo.com&fields=symbol,longName,shortName,priceHint,regularMarketPrice,regularMarketChange,regularMarketChangePercent,currency,regularMarketTime,regularMarketVolume,quantity,averageDailyVolume3Month,regularMarketDayHigh,regularMarketDayLow,regularMarketPrice,regularMarketOpen,fiftyTwoWeekHigh,fiftyTwoWeekLow,regularMarketPrice,regularMarketOpen,sparkline,marketCap&symbols=' + symbols_segment + '&formatted=false')
+        r = requests.get('https://query1.finance.yahoo.com/v7/finance/quote?lang=en-US&region=US&corsDomain=finance.yahoo.com&fields=symbol,longName,shortName,priceHint,regularMarketPrice,regularMarketChange,regularMarketChangePercent,currency,regularMarketTime,regularMarketVolume,quantity,averageDailyVolume3Month,regularMarketDayHigh,regularMarketDayLow,regularMarketPrice,regularMarketOpen,fiftyTwoWeekHigh,fiftyTwoWeekLow,regularMarketPrice,regularMarketOpen,sparkline,marketCap&symbols=' + symbols_segment + '&formatted=false', headers={'User-Agent': 'curl/7.71.1'})
         content = json.loads(r.text)
         logger.debug(f'quotes from Yahoo: {content}')
         quotes = RealTimeYahooDataSource.convert_from_yahoo_json(content)
